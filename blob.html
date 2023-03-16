@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blob - Clientside file generation and download</title>
+  </head>
+  <body>
+    <h1>Clientside file generation and download</h1>
+    <a id="a1" download="Blob1.txt">Download text file</a>
+    <table border="1" bordercolor="green" bgcolor="yellow">
+      <tr>
+        <th>Column 1</th>
+        <th>Column 2</th>
+        <th>Column 3</th>
+      </tr>
+      <tr>
+        <td rowspan="3">Row 1 Cell 1</td>
+        <td>Row 1 Cell 2</td>
+        <td>Row 1 Cell 3</td>
+      </tr>
+      <tr>
+        <td>Row 2 Cell 2</td>
+        <td>Row 2 Cell 3</td>
+      </tr>
+      <tr>
+        <td colspan="3">Row 3 Cell 1</td>
+      </tr>
+    </table>
+    <a id="a2" download="Blob.csv">Download CSV file</a>
+
+    <script>
+      // text file ------------------------------------------------------
+      const a1 = document.getElementById("a1");
+      const blob1 = new Blob(["Hello ", "Download!"], { type: "text/plain" });
+      a1.href = URL.createObjectURL(blob1);
+
+      //read the file
+      let reader = new FileReader();
+      reader.readAsDataURL(blob1);
+      console.log(reader);
+
+      // CSV file ------------------
+      const data = [
+        ["Column 1", "Column 2", "Column 3"],
+        ["Row 1 Cell 1", "Row 1 Cell 2", "Row 1 Cell 3"],
+        ["Row 2 Cell 2", "Row 2 Cell 3"],
+        ["Row 3 Cell 1"],
+      ];
+
+      function makeCSV(rows) {
+        return rows.map((r) => r.join(",")).join("\n");
+      }
+
+      const a2 = document.getElementById("a2");
+      const blob2 = new Blob([makeCSV(data)]);
+      a2.href = URL.createObjectURL(blob2);
+    </script>
+  </body>
+</html>

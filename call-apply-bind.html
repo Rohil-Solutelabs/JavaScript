@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>call-apply-bind</title>
+  </head>
+  <body>
+    <script>
+      let name = {
+        firstname: "Rohil",
+        lastname: "Gajera",
+      };
+
+      let printFullName = function (hometown, state) {
+        console.log(
+          this.firstname +
+            " " +
+            this.lastname +
+            " from " +
+            hometown +
+            ", " +
+            state
+        );
+      };
+
+      printFullName.call(name, "Surat", "Gujarat");
+
+      //   -------------------------------- Call method -------------------------------------------
+
+      let name2 = {
+        firstname: "Virat",
+        lastname: "Kohli",
+      };
+
+      // Function borrowing from the other object -------------------------
+      printFullName.call(name2, "Mumbai", "Maharastra");
+
+      //   --------------------------- apply method -------------------------------------------
+
+      printFullName.apply(name2, ["Mumbai", "Maharastra"]);
+
+      //   ------------------------- bind method -------------------------------------------
+
+      let printMyName = printFullName.bind(name2, "Mumbai", "Maharastra");
+      console.log(printMyName);
+      printMyName();
+    </script>
+  </body>
+</html>

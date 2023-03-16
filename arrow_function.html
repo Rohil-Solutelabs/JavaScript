@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrow function</title>
+  </head>
+  <body>
+    <script>
+      // Arrow function   .....................*********************......................
+
+      const sayHello = () => {
+        console.log("hello parth");
+      };
+
+      sayHello();
+
+      //   or we can write in one line also..................******************...........................
+
+      const sayHello1 = () => console.log("hello palak");
+
+      sayHello1();
+
+      //   or we can pass value ..........................**************************..................
+
+      const sayHello2 = (name) => console.log("hello " + name);
+
+      sayHello2("rohil");
+
+      //   or we can pass multiple value with () .............**************................................
+
+      const sayHello3 = (firstname, lastname) =>
+        console.log("hello " + firstname + " " + lastname);
+
+      sayHello3("rohil", "gajera");
+
+      //   or we can add function and this keyword .............................................
+
+      const x = {
+        name: "Rohil",
+        role: "Js developer",
+        exp: 10,
+        show: function () {
+          console.log(
+            `My name is ${this.name}\nMy role is ${this.role} \nI have ${this.exp} years of exp.`
+          );
+
+          //   this gives global objcet..........................................................
+          console.log(this);
+
+          //   settimeout .............................................
+
+          let that = this;
+
+          //   regular function we have to use that = this method........ this is old method.....***********************************8.......................
+
+          setTimeout(function () {
+            console.log(
+              `regular function -- \nMy name is ${that.name}\nMy role is ${that.role} \nI have ${that.exp} years of exp.`
+            );
+          }, 2000);
+
+          //   in arrow function we have to use only this keyword....................********************************...............
+
+          setTimeout(() => {
+            console.log(
+              `arrow function -- \nMy name is ${this.name}\nMy role is ${this.role} \nI have ${this.exp} years of exp.`
+            );
+          }, 3000);
+        },
+      };
+
+      x.show();
+    </script>
+  </body>
+</html>

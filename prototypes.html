@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prototypes</title>
+  </head>
+  <body>
+    <script>
+      let a = {
+        name: "Rohil",
+        Language: "JavaScript",
+      };
+      console.log(a);
+
+      let p = {
+        run: () => {
+          console.log("run");
+        },
+      };
+
+      a.__proto__ = p;
+      a.run(p);
+
+      // change prototype using __proto__ ----------------------------------------------------------------
+      let animal = {
+        eats: true,
+      };
+      let rabbit = {
+        jumps: true,
+      };
+
+      rabbit.__proto__ = animal; // sets rabbit.[[Prototype]] = animal
+      console.log(rabbit.eats);
+    </script>
+  </body>
+</html>

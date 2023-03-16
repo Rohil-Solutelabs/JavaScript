@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eval</title>
+  </head>
+  <body>
+    <input type="text" id="input" />
+    <button type="button" onclick="myFunction()">=</button>
+    <script>
+      // ------------------------
+      // Runs the string of code and returns the result of last statement
+      // ------------------------
+
+      let code = 'console.log("Hello")';
+      eval(code); // Hello
+      console.log("---------------------------");
+
+      let value = eval("1+1");
+      console.log(value);
+      console.log("---------------------------");
+
+      let value1 = eval("let i = 0; ++i");
+      console.log(value1);
+      console.log("---------------------------");
+
+      let a = 1;
+      function f() {
+        let a = 2;
+        eval("console.log(a)"); // 2
+      }
+      f();
+      console.log("---------------------------");
+
+      let x = 5;
+      eval("x = 10");
+      console.log(x); // 10, value modified
+      console.log("---------------------------");
+
+      // reminder: 'use strict' is enabled in runnable examples by default
+
+      eval("let x = 5; function f() {}");
+      console.log(typeof x); // undefined (no such variable)
+      // function f is also not visible
+      console.log("---------------------------");
+
+      //   If eval’ed code doesn’t use outer variables, please call eval as window.eval(...):
+      let x1 = 1;
+      {
+        let x1 = 5;
+        window.eval("console.log(x1)"); // 1 (global variable)
+      }
+      console.log("---------------------------");
+
+      //   macking a Calculator using Eval
+
+      myFunction = () => {
+        var input = document.getElementById("input").value;
+        var result = eval(input);
+        console.log(result);
+      };
+
+      let name = "myFunction";
+      console.log(name.slice(2, 5));
+      console.log(name.slice(2));
+
+      const str = "Hello, world!";
+      for (let i = 0; i < str.length; i++) {
+        console.log(str[i]);
+      }
+    </script>
+  </body>
+</html>

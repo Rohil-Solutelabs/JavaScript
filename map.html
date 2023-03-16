@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>map reduce filter</title>
+  </head>
+  <body>
+    <script>
+      // map method.............................................................................................
+
+      let arr = [12, 35, 63];
+
+      // we can use value or index or array ,, out is same
+
+      let a = arr.map((value, index, array) => {
+        console.log(value, index, array);
+        return value * 2;
+      });
+      console.log(a);
+
+      // filter method.............................................................................................
+
+      let arr1 = [12, 5, 91, 0, 35, 63, 9, 2, 6];
+
+      let a1 = arr1.filter((filter) => {
+        return filter < 10;
+      });
+      console.log(a1);
+
+      // reduce method.............................................................................................
+
+      let arr2 = [12, 5, 91, 0, 35, 63, 9, 2, 6];
+
+      let a2 = arr2.reduce((h1, h2) => {
+        return h1 + h2;
+      });
+      console.log(a2);
+
+      //   or.....
+      let arrfunc = [12, 5, 91, 0, 35, 63, 9, 2, 6];
+
+      let reduce_func = (h1, h2) => {
+        return h1 + h2;
+      };
+      let a_func = arrfunc.reduce(reduce_func);
+      console.log(a_func);
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/new/rohil.css" />
+    <title>URL_components</title>
+  </head>
+  <body>
+    <script>
+      let url = new URL("https://google.com/search");
+      console.log(url.toString());
+
+      //   console.log(url); // https://google.com/search
+
+      url.searchParams.set("name", "rohil"); // added parameter with a space and !
+
+      console.log(url); // 
+
+      url.searchParams.set("age", 21); // added parameter with a colon :
+      // parameters are automatically encoded
+      console.log(url);
+      console.log(url.toString());
+
+      // iterate over search parameters (decoded)
+      for (let [name, value] of url.searchParams) {
+        console.log(`${name}=${value}`); 
+      }
+
+      //  Change a hostname of URL
+      url.hostname = "facebook.com";
+      console.log(url);
+
+      // gives current page URL
+      let url1 = new URL(window.location.href);
+      console.log(url1.toString());
+
+      // set name and get name
+      url1.searchParams.set("name", "rohil");
+      console.log(url1.searchParams.get("name")); // rohil
+
+      let fetch1 = new URL("https://localhost/new/rohil.css");
+
+      fetch(fetch1)
+        .then(function (response) {
+          return response.text();
+        })
+        .then(function (text) {
+          console.log(text);
+        });
+    </script>
+  </body>
+</html>

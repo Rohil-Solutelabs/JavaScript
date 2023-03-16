@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promises</title>
+  </head>
+  <body>
+    <script>
+      // ---------------------promise--------------------------------------
+
+      let promise = new Promise(function (resolve, reject) {
+        setTimeout(() => {
+          console.log("I am an alert in promise");
+          resolve(23);
+        }, 1000);
+      });
+
+      console.log("Hello, world!");
+      setTimeout(function () {
+        console.log("hello in two seconds!");
+      }, 2000);
+
+      console.log("My name is " + "hello three");
+      console.log(promise);
+
+      // ------------------multiple---promise--------------------------------------
+
+      let p1 = new Promise(function (resolve, reject) {
+        console.log("promise is pending");
+        setTimeout(() => {
+          //   console.log("I am a promise and i am resolved!");
+          resolve(true);
+        }, 2000);
+      });
+
+      let p2 = new Promise(function (resolve, reject) {
+        console.log("promise is pending");
+        setTimeout(() => {
+          //   console.log("I am a promise and i am rejected!");
+          reject(new Error("I am rejected"));
+        }, 3000);
+      });
+
+      //   To get the value------------------------
+      p1.then((value) => {
+        console.log(value);
+      });
+
+      //   To catch the error------------------------
+
+      p2.catch((error) => {
+        console.log("Some error happened in p2!");
+      });
+
+      //   or we can write both in one line-----------------------
+
+      p2.then(
+        (value) => {
+          console.log(value);
+        },
+        (error) => {
+          console.log("Some error happened in p2!");
+        }
+      );
+
+      console.log(p1, p2);
+
+      // *******************************************************************************************************************************************
+      // -----------------------------------------------(((((((((PROMISES API))))))) 5 methods to get all vzlues in one array-----------------------------------------
+
+      // We can only obtain the resolution value using ((((all methods))))); there is no rejected value, otherwise, an error will occur.----------------------
+
+      let promise_all = Promise.all([promise, p1, p2]);
+      promise_all.then((value) => {
+        console.log(value);
+      });
+
+      // We can obtain the resolution value and also reject value using ((((allSettled methods))))) ---------------------
+
+      let promise_all1 = Promise.allSettled([promise, p1, p2]);
+      promise_all1.then((value) => {
+        console.log(value);
+      });
+
+      // (((  race method  )))))wait for the first promise to settle and its error becomes the outcome.-----------------
+
+      let promise_all2 = Promise.race([promise, p1, p2]);
+      promise_all2.then((value) => {
+        console.log(value);
+      });
+
+      // (((  any method  )))))wait for the first promise to fullfill ( &not rejected ) and throw agrregate error if all the promises rejected.-----------------
+
+      let promise_all3 = Promise.any([promise, p1, p2]);
+      promise_all3.then((value) => {
+        console.log(value);
+      });
+    </script>
+  </body>
+</html>

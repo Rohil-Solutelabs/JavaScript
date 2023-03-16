@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prototypal inheritance</title>
+  </head>
+  <body>
+    <script>
+      const proto = {
+        slogan: function () {
+          return `This company is the best`;
+        },
+        changeName: function (newName) {
+          this.name = newName;
+        },
+      };
+      //  this create rohil object
+      let rohil = Object.create(proto);
+      rohil.name = "Rohil";
+      rohil.role = "Programmer";
+
+      //  this also create rohil1 object
+      const rohil1 = Object.create(proto, {
+        name: { value: "Rohil", writable: true },
+        role: { value: "Programmer" },
+      });
+      console.log(rohil1);
+
+      //  Change name using prototype
+      rohil.changeName("Rohil1");
+      console.log(rohil);
+      console.log("------------------------------");
+
+      //   Employee Constructor---------------------------------------------
+
+      function Employee(name, salary, experience) {
+        this.name = name;
+        this.salary = salary;
+        this.experience = experience;
+      }
+
+      // Slogan
+      Employee.prototype.slogan = function () {
+        return `This company is the best. Regards, ${this.name}`;
+      };
+
+      let Rohil = new Employee("Rohil", 34567, 3);
+      console.log(Rohil);
+      console.log(Rohil.slogan());
+
+      // Programmer
+      function Programmer(name, salary, experience, language) {
+        Employee.call(this, name, salary, experience);
+        this.language = language;
+      }
+
+      // Inherit the prototype
+      Programmer.prototype = Object.create(Employee.prototype);
+
+      // Manually set the constructor
+      Programmer.prototype.constructor = Programmer;
+
+      let parth = new Programmer("Parth", 2, 0, "Javascript");
+      console.log(parth);
+    </script>
+  </body>
+</html>

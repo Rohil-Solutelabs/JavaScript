@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Destructuring</title>
+    –
+  </head>
+  <body>
+    <script>
+      // -----------------------------for Array---------------------------------------------------------
+      [a, b, c, ...d] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+      console.log(a);
+      console.log(b);
+      console.log(c);
+      console.log(d);
+
+      // ------------------------------------------------------------------------------------------
+      ({ a, b, c, ...d } = { a: 23, b: 355, c: 222, d: 43, e: 865 });
+      console.log(a, b, c, d);
+
+      // -----------------------------for Object---------------------------------------------------------
+
+      const laptop = {
+        model: "MI",
+        age: "243-days",
+        gender: "male",
+        net: 1233,
+        start: function () {
+          console.log("started");
+        },
+      };
+
+      const { model, age, gender } = laptop;
+      console.log(model, age, gender);
+
+      //   const { model: HP, age } = laptop;
+      //   console.log(model, age);
+    </script>
+  </body>
+</html>

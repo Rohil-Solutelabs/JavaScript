@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fetch</title>
+  </head>
+  <body>
+    <script>
+      // as json  --------------------------------
+      fetch(
+        "https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits"
+      )
+        .then((response) => response.json())
+        .then((commits) => {
+          console.log(commits[0].author.login);
+        });
+
+      // as text  ----------------------------------------
+      async function rohil() {
+        let response = await fetch(
+          "https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits"
+        );
+
+        let text = await response.text(); // read response body as text
+        console.log(text.slice(0, 80) + " read more...");
+      }
+      rohil();
+
+      // header  ----------------------------------------
+
+      setTimeout(() => {
+        //   console.log("I am a promise and i am resolved!");
+        async function header() {
+          let response = await fetch(
+            "https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits"
+          );
+          console.log(response.headers);
+
+          // get one header
+          console.log(response.headers.get("Content-Type")); // application/json; charset=utf-8
+
+          // iterate over all headers
+          for (let [key, value] of response.headers) {
+            console.log(`${key} = ${value}`);
+          }
+        }
+        header();
+      }, 3000);
+    </script>
+  </body>
+</html>
